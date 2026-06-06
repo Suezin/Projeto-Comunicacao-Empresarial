@@ -1,20 +1,36 @@
+:root{
+    --nav-bg:#121358;
+    --bg:#87B6BC;
+    --bg-sec:rgb(235, 235, 235);
+}
 html{
     margin:0;
     padding: 0;
     height: 100vh;   
     scroll-behavior: smooth;
+    background: var(--bg);
 }
 header{
-    width: 100%;
+    width: 80%;
     height: 5em;
-    top:0;
-    left:0;
+    top:3%;
+    left:10%;
     display: flex;
     justify-content:center;
     align-items:center;
     position: fixed;
     z-index: 1000;
-    background:#333;
+    background-color: rgb(from var(--nav-bg) r g b / 0.9) ;
+    border-radius:5em;
+    box-shadow: -10px 10px 30px rgb(9, 0, 136);
+    backdrop-filter: blur(100px);
+}
+header h1{
+    width: 100%;
+    text-align: start;
+    padding-left: 2em;
+    color:white;
+    font-family:'Times New Roman', Times, serif;
 }
 nav{
     width: 100%;
@@ -40,13 +56,38 @@ header ul li a {
     font-size:1.2em;
     text-decoration: none;
     padding-bottom:2px;
-    color:black;
+    color:rgb(252, 231, 231);
 }
 .active{
     transition: 0.2s ease-out;
     border-bottom: 2px solid cyan;
 }
+#problema{
 
-main section{
-    padding-top: 8em;
+    scroll-margin-top: 7em;
+    background: var(--bg-sec);
+    
+}
+section {
+    background: var(--bg-sec) ;
+    scroll-margin-top: 7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-top: 7em;
+    border-radius: 2em;
+
+}
+p{
+    font-size: 1.3em;
+    text-align: center;
+}
+h1{
+    font-size: 1.7em;
+    padding:1em;
+}
+h3{
+    font-size: 1.5em;
+    padding: 1em;
 }

@@ -1,93 +1,309 @@
-:root{
-    --nav-bg:#121358;
-    --bg:#87B6BC;
-    --bg-sec:rgb(235, 235, 235);
+/* ==========================================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+:root {
+    /* Cores atualizadas para um contraste moderno e chamativo */
+    --nav-bg: rgba(10, 10, 10, 0.6); /* Transparente para o efeito blur */
+    --bg-main: #0a0a0c;
+    --accent-blue: #2b2ed3;
+    --accent-cyan: #00f2fe;
+    --neon-shadow: rgba(0, 242, 254, 0.4);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.75);
 }
-html{
-    margin:0;
-    padding: 0;
-    height: 100vh;   
-    scroll-behavior: smooth;
-    background: var(--bg);
-}
-header{
-    width: 80%;
-    height: 5em;
-    top:3%;
-    left:10%;
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    position: fixed;
-    z-index: 1000;
-    background-color: rgb(from var(--nav-bg) r g b / 0.9) ;
-    border-radius:5em;
-    box-shadow: -10px 10px 30px rgb(9, 0, 136);
-    backdrop-filter: blur(100px);
-}
-header h1{
-    width: 100%;
-    text-align: start;
-    padding-left: 2em;
-    color:white;
-    font-family:'Times New Roman', Times, serif;
-}
-nav{
-    width: 100%;
-    
-}
-header ul {
-    display:flex;
-    justify-content:end;
-    padding: 3em;
-    list-style: none;
-}
-header ul li {
-    
-    border-radius:10px;
-    width: 6em;
-    height:2em;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-header ul li a {
-    text-align: center;
-    font-size:1.2em;
-    text-decoration: none;
-    padding-bottom:2px;
-    color:rgb(252, 231, 231);
-}
-.active{
-    transition: 0.2s ease-out;
-    border-bottom: 2px solid cyan;
-}
-#problema{
 
-    scroll-margin-top: 7em;
-    background: var(--bg-sec);
-    
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-size: 16px; /* Base para medições REM estáveis */
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. HEADER & MENU (COM DESFOQUE E RESPONSIVO)
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 20px;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    min-height: 70px;
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    z-index: 1000;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* --- EFEITO DE DESFOQUE DE FUNDO --- */
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+header h1 {
+    font-size: 1.2rem;
+    padding: 0;
+    width: auto;
+    text-align: left;
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: -0.5px;
+    background: linear-gradient(45deg, #fff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav {
+    width: auto;
+}
+
+header ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+header ul li a {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fce7e7;
+    white-space: nowrap;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+header ul li a:hover {
+    background: var(--accent-blue);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(43, 46, 211, 0.6);
+}
+
+.nav-link.active {
+    border-bottom: 2px solid var(--accent-cyan);
+}
+
+/* ==========================================================================
+   3. SEÇÕES PRINCIPAIS (ESTRUTURA FLUIDA)
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 section {
-    background: var(--bg-sec) ;
-    scroll-margin-top: 7em;
+    margin-top: 140px;
+    padding-top: 20px;
+    scroll-margin-top: 120px;
+    min-height: auto; /* Remove o height fixo antigo para não cortar texto */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    margin-top: 7em;
-    border-radius: 2em;
+    align-items: center;
+}
 
-}
-p{
-    font-size: 1.3em;
+section > h1 {
     text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    width: 100%;
 }
-h1{
-    font-size: 1.7em;
-    padding:1em;
+
+/* ==========================================================================
+   4. CARDS ESTILIZADOS E CHAMATIVOS (NEON GLOW)
+   ========================================================================== */
+section .section-card {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 180px; /* Altura flexível baseada no conteúdo */
+    margin: 25px 0;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 30% 70%; /* Divide o título e texto perfeitamente */
+    align-items: center;
+    gap: 20px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    
+    /* Brilho Neon Aperfeiçoado */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
+                inset 0 0 15px rgba(0, 242, 254, 0.05),
+                0 0 30px var(--neon-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-h3{
-    font-size: 1.5em;
-    padding: 1em;
+
+section .section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 242, 254, 0.1),
+                0 0 45px rgba(0, 242, 254, 0.6);
+}
+
+section .section-card h3 {
+    font-size: 1.4rem;
+    padding: 0;
+    line-height: 1.3;
+}
+
+section .section-card ul {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+section .section-card ul li {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+section .section-card ul li p {
+    display: inline;
+    padding: 0;
+}
+
+/* Customização específica para layouts sem cards (Solução) */
+#solucao h3, #solucao p {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 15px;
+}
+#solucao p {
+    margin-bottom: 40px;
+}
+
+/* ==========================================================================
+   5. TEXTOS E TIPOGRAFIA
+   ========================================================================== */
+h1, h3 {
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: -0.5px;
+}
+
+p {
+    font-size: 1.15rem;
+    font-family: "Literata", serif;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: justify;
+}
+
+/* ==========================================================================
+   6. BOTÃO DE CHAMADA PARA AÇÃO (CTA)
+   ========================================================================== */
+#ajude-nos p {
+    text-align: center;
+    max-width: 700px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.botao-formulrio {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(45deg, var(--accent-blue), #1e219c);
+    border: 2px solid var(--accent-cyan);
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(43, 46, 211, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.botao-formulrio:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #1e219c, var(--accent-blue));
+    box-shadow: 0 0 35px var(--accent-cyan);
+}
+
+/* ==========================================================================
+   7. MEDIA QUERIES (RESPONSIVIDADE EXTREMA)
+   ========================================================================== */
+
+/* Tablets e Telas Médias (Até 968px) */
+@media (max-width: 968px) {
+    header {
+        padding: 15px 20px;
+    }
+    
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    section .section-card {
+        grid-template-columns: 100%; /* Transforma o card em uma coluna única */
+        text-align: center;
+        gap: 15px;
+    }
+
+    section .section-card p {
+        text-align: center;
+    }
+}
+
+/* Smartphones (Até 640px) */
+@media (max-width: 640px) {
+    html {
+        font-size: 14px; /* Diminui proporcionalmente fontes em telas mini */
+    }
+
+    header {
+        top: 10px;
+        left: 2%;
+        width: 96%;
+        border-radius: 20px;
+        flex-direction: column; /* Empilha a logo e o menu */
+        gap: 12px;
+        padding: 15px 10px;
+    }
+
+    header h1 {
+        text-align: center;
+        width: 100%;
+    }
+
+    header ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    header ul li a {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    section {
+        margin-top: 180px; /* Evita que o menu empilhado cubra o conteúdo */
+    }
+
+    section > h1 {
+        font-size: 1.6rem;
+    }
+    
+    p {
+        text-align: left; /* Melhora leitura em telas muito estreitas */
+    }
 }
